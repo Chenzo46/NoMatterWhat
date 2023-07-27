@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class MatterSwitcher : MonoBehaviour
 {
-    //This is part of the pause branch
     [SerializeField] private areaData groundData;
     [SerializeField] private areaData waterData;
     [SerializeField] private LayerMask switchLayer;
