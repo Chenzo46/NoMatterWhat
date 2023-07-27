@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: water_atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 9e1c32ed05986dc4fb1900eab322e3ad, type: 3}
+    - {fileID: 2800000, guid: 64f7cbf5bc9c3cf4683e656cd4037d98, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - 64f7cbf5bc9c3cf4683e656cd4037d98: 470000470
+    - 64f7cbf5bc9c3cf4683e656cd4037d98: -31735042
+    - 64f7cbf5bc9c3cf4683e656cd4037d98: -1570433505
+    - 64f7cbf5bc9c3cf4683e656cd4037d98: -581216226
+    - 64f7cbf5bc9c3cf4683e656cd4037d98: -96635802
+    - 64f7cbf5bc9c3cf4683e656cd4037d98: 1322075290
+    - 64f7cbf5bc9c3cf4683e656cd4037d98: -1275751090
+    - 9e1c32ed05986dc4fb1900eab322e3ad: 1812085135
+    - 9e1c32ed05986dc4fb1900eab322e3ad: -26676172
+    - 9e1c32ed05986dc4fb1900eab322e3ad: 1324496252
+    - 9e1c32ed05986dc4fb1900eab322e3ad: 591256309
+    - 9e1c32ed05986dc4fb1900eab322e3ad: -2129855757
+    - 9e1c32ed05986dc4fb1900eab322e3ad: -813165446
+    - 9e1c32ed05986dc4fb1900eab322e3ad: -1550094880
+    - 9e1c32ed05986dc4fb1900eab322e3ad: 1892302891
+    - 9e1c32ed05986dc4fb1900eab322e3ad: 1716321127
+    - 9e1c32ed05986dc4fb1900eab322e3ad: 2123874949
+    - 9e1c32ed05986dc4fb1900eab322e3ad: 1650026117
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 470000470, guid: 64f7cbf5bc9c3cf4683e656cd4037d98, type: 3}
+  - {fileID: -31735042, guid: 64f7cbf5bc9c3cf4683e656cd4037d98, type: 3}
+  - {fileID: -1570433505, guid: 64f7cbf5bc9c3cf4683e656cd4037d98, type: 3}
+  - {fileID: -581216226, guid: 64f7cbf5bc9c3cf4683e656cd4037d98, type: 3}
+  - {fileID: -96635802, guid: 64f7cbf5bc9c3cf4683e656cd4037d98, type: 3}
+  - {fileID: 1322075290, guid: 64f7cbf5bc9c3cf4683e656cd4037d98, type: 3}
+  - {fileID: -1275751090, guid: 64f7cbf5bc9c3cf4683e656cd4037d98, type: 3}
+  - {fileID: 1812085135, guid: 9e1c32ed05986dc4fb1900eab322e3ad, type: 3}
+  - {fileID: -26676172, guid: 9e1c32ed05986dc4fb1900eab322e3ad, type: 3}
+  - {fileID: 1324496252, guid: 9e1c32ed05986dc4fb1900eab322e3ad, type: 3}
+  - {fileID: 591256309, guid: 9e1c32ed05986dc4fb1900eab322e3ad, type: 3}
+  - {fileID: -2129855757, guid: 9e1c32ed05986dc4fb1900eab322e3ad, type: 3}
+  - {fileID: -813165446, guid: 9e1c32ed05986dc4fb1900eab322e3ad, type: 3}
+  - {fileID: -1550094880, guid: 9e1c32ed05986dc4fb1900eab322e3ad, type: 3}
+  - {fileID: 1892302891, guid: 9e1c32ed05986dc4fb1900eab322e3ad, type: 3}
+  - {fileID: 1716321127, guid: 9e1c32ed05986dc4fb1900eab322e3ad, type: 3}
+  - {fileID: 2123874949, guid: 9e1c32ed05986dc4fb1900eab322e3ad, type: 3}
+  - {fileID: 1650026117, guid: 9e1c32ed05986dc4fb1900eab322e3ad, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - water_extras_3
+  - water_extras_2
+  - water_extras_1
+  - water_extras_0
+  - water_extras_6
+  - water_extras_5
+  - water_extras_4
+  - water_ice_5
+  - water_ice_4
+  - water_ice_7
+  - water_ice_6
+  - water_ice_1
+  - water_ice_0
+  - water_ice_3
+  - water_ice_2
+  - water_ice_9
+  - water_ice_8
+  - water_ice_10
+  m_RenderDataMap: {}
+  m_Tag: water_atlas
+  m_IsVariant: 0
