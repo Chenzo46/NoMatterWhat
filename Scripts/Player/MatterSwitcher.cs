@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class MatterSwitcher : MonoBehaviour
 {
+    //Test string
     [SerializeField] private areaData groundData;
     [SerializeField] private areaData waterData;
     [SerializeField] private LayerMask switchLayer;
