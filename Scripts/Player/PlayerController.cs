@@ -81,6 +81,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
+        moveInput = 0f;
+        rb.velocity = Vector2.zero;
         //Walk
         input.Player.walk.performed += updateMovement;
         input.Player.walk.canceled += updateMovementCanceled;
@@ -135,7 +137,7 @@ public class PlayerController : MonoBehaviour
         if (!canMove) return;
         dash();
         movement();
-        applyExtraGravityAfterJump();
+        //applyExtraGravityAfterJump();
     }
     #endregion
 

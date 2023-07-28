@@ -54,6 +54,9 @@ public class FishController : MonoBehaviour
 
     private void OnEnable()
     {
+        moveInput = Vector2.zero;
+        rb.velocity = Vector2.zero;
+        isPressingSprint = false;
         //Swim
         input.Player.Swim.performed += swimPerformed;
         input.Player.Swim.canceled += swimCanceled;
@@ -64,7 +67,7 @@ public class FishController : MonoBehaviour
 
     private void OnDisable()
     {
-
+        
         //Swim
         input.Player.Swim.performed -= swimPerformed;
         input.Player.Swim.canceled -= swimCanceled;
@@ -227,7 +230,7 @@ public class FishController : MonoBehaviour
         }
         else
         {
-            groundTimeRef = groundTime;
+            groundTimeRef = Mathf.MoveTowards(groundTimeRef, groundTime, 5f * Time.deltaTime);
         }
 
         if(groundTimeRef <= 0 && !dying)
