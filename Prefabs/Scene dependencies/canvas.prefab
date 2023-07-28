@@ -2529,6 +2529,9 @@ MonoBehaviour:
   meterFrame: {fileID: 6741587385419975407}
   firstSelected: {fileID: 7876946191962568004}
   optionsMenuAnim: {fileID: 7020625065897153579}
+  FishPause: {fileID: 21300000, guid: a6a6030160f4edf42b1e75798f15820b, type: 3}
+  PlayerPause: {fileID: 21300000, guid: 5debb3d6e79efdf458d19feef6576e8c, type: 3}
+  pauseBack: {fileID: 7658261444891477781}
 --- !u!1 &4965142743870844031
 GameObject:
   m_ObjectHideFlags: 0

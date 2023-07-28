@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private CanvasGroup meterFrame;
     [SerializeField] private GameObject firstSelected;
     [SerializeField] private Animator optionsMenuAnim;
+    [SerializeField] private Sprite FishPause;
+    [SerializeField] private Sprite BirdPause;
+    [SerializeField] private Sprite PlayerPause;
+    [SerializeField] private Image pauseBack;
 
     private MatterSwitcher mt;
 
@@ -72,6 +77,15 @@ public class PauseMenu : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(firstSelected);
         anim.SetTrigger("pause");
         isPaused = true;
+        
+        if(mt.getCurrentState() == MatterSwitcher.PlayerState.Normal)
+        {
+            pauseBack.sprite = PlayerPause;
+        }
+        else if (mt.getCurrentState() == MatterSwitcher.PlayerState.Fish)
+        {
+            pauseBack.sprite = FishPause;
+        }
     }
 
     public void unPause()
