@@ -10,7 +10,6 @@ public class MatterSwitcher : MonoBehaviour
     [SerializeField] private areaData waterData;
     [SerializeField] private LayerMask switchLayer;
     [SerializeField] private LayerMask endLayer;
-    [SerializeField] private GameObject tooltip;
     [SerializeField] private BoxCollider2D bxc;
     [SerializeField] private AudioClip rippleSound;
     [SerializeField] private AudioClip deathSound;
@@ -29,8 +28,6 @@ public class MatterSwitcher : MonoBehaviour
     private PlayerController PC;
 
     private matterPortal mp;
-
-    private bool nextToEnd = false;
 
     private float TimeSinceLastUsedMeter = 5f;
 
@@ -97,8 +94,6 @@ public class MatterSwitcher : MonoBehaviour
         oppositeBoxPos = new Vector2(-pickupArea.localPosition.x, pickupArea.localPosition.y);
         orgBoxPos = pickupArea.localPosition;
         spr = GetComponent<SpriteRenderer>();
-
-        
     }
 
     private void changeBreathMeter()
@@ -137,7 +132,6 @@ public class MatterSwitcher : MonoBehaviour
     {
         changeBreathMeter();
         applyCurrentState();
-        isnextToEnd();
         setLookPos();
         handlePause();
     }
@@ -208,7 +202,7 @@ public class MatterSwitcher : MonoBehaviour
 
     private void applyCurrentState()
     {
-        interactGraphic.SetActive((nextToEnd && currentPlayerState == PlayerState.Normal) || (inSwitchArea() && mp != null && mp.getActiveState()));
+        interactGraphic.SetActive((nextToEndBool() && currentPlayerState == PlayerState.Normal) || (inSwitchArea() && mp != null && mp.getActiveState()));
 
         if (currentPlayerState == PlayerState.Normal)
         {
@@ -225,19 +219,24 @@ public class MatterSwitcher : MonoBehaviour
         
     }
 
+    private bool nextToEndBool()
+    {
+        Collider2D cl = Physics2D.OverlapCircle(transform.position, 1f, endLayer);
+
+        if (cl != null && cl.GetComponent<endLevel>().getActiveState())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 
     private void isnextToEnd()
     {
         Collider2D  cl = Physics2D.OverlapCircle(transform.position, 1f, endLayer);
-
-        if (cl != null && cl.GetComponent<endLevel>().getActiveState())
-        {
-            nextToEnd = true;
-        }
-        else
-        {
-            nextToEnd = false;
-        }
 
         if (currentPlayerState == PlayerState.Normal && cl != null && cl.GetComponent<endLevel>().getActiveState())
         {

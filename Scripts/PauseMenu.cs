@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private CanvasGroup levelName;
     [SerializeField] private CanvasGroup meterFrame;
     [SerializeField] private GameObject firstSelected;
+    [SerializeField] private Animator optionsMenuAnim;
 
     private MatterSwitcher mt;
 
@@ -40,6 +41,14 @@ public class PauseMenu : MonoBehaviour
         input.Player.Pause.performed -= pausePerformed;
     }
 
+    private void Update()
+    {
+        if (isPaused)
+        {
+            meterFrame.alpha = Mathf.MoveTowards(meterFrame.alpha, 1f, 2f * Time.unscaledDeltaTime);
+        }
+    }
+
     private void pausePerformed(InputAction.CallbackContext value)
     {
         if (!isPaused && anim.GetCurrentAnimatorStateInfo(0).normalizedTime! > 1 && !mt.isDying)
@@ -52,31 +61,32 @@ public class PauseMenu : MonoBehaviour
             unPause();
 
         }
+
+        
     }
     public void pause()
     {
-        Debug.Log("paused");
         Time.timeScale = 0f;
         EventSystem.current.SetSelectedGameObject(firstSelected);
         anim.SetTrigger("pause");
         isPaused = true;
-        levelName.alpha = 1f;
-        meterFrame.alpha = 1f;
     }
 
     public void unPause()
     {
         if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime! > 1)
         {
-            Debug.Log("unpaused");
             Time.timeScale = 1f;
             anim.SetTrigger("pause");
             isPaused = false;
-            levelName.alpha = 0f;
-            meterFrame.alpha = 0f;
             EventSystem.current.SetSelectedGameObject(null);
         }
         
+    }
+
+    public void toggleOptionsOpen()
+    {
+        optionsMenuAnim.SetTrigger("open");
     }
 
     public void toMainMenu()

@@ -30,6 +30,7 @@ public class CameraFollow : MonoBehaviour
     public void setTarget(Transform tg)
     {
         target = tg;
+        transform.position = tg.position;
     }
 
     public void editOffset(Vector2 translation)

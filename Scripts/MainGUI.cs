@@ -44,7 +44,6 @@ public class MainGUI : MonoBehaviour
         }
         catch 
         {
-            Debug.Log("fade out not working");
         }
         
         SceneTransitioner.Singleton.toMainMenu();

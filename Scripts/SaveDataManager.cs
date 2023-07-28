@@ -22,7 +22,10 @@ public class SaveDataManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        Singleton = this;
+        else
+        {
+            Singleton = this;
+        }
         saveDataPath = Application.persistentDataPath + "/nomatterwhat.json";
         gameVariablePath = Application.persistentDataPath + "/nomatterwhatvariables.json";
         Debug.Log(saveDataPath);
