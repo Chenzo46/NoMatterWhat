@@ -19,6 +19,8 @@ public class PauseMenu : MonoBehaviour
 
     public static PauseMenu Singleton;
 
+    private bool inOptions = false;
+
     private void Awake()
     {
         Singleton = this;
@@ -74,7 +76,7 @@ public class PauseMenu : MonoBehaviour
 
     public void unPause()
     {
-        if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime! > 1)
+        if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime! > 1 && !inOptions)
         {
             Time.timeScale = 1f;
             anim.SetTrigger("pause");
@@ -87,6 +89,7 @@ public class PauseMenu : MonoBehaviour
     public void toggleOptionsOpen()
     {
         optionsMenuAnim.SetTrigger("open");
+        inOptions = !inOptions;
     }
 
     public void toMainMenu()
