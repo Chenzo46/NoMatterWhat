@@ -101,11 +101,7 @@ public class endLevel : MonoBehaviour
                 false);
                 break;
             case SceneType.main:
-                musicTrackManager.Singleton.musicCollection.crossFadeSong(
-                musicTrackManager.Singleton.musicCollection.currentlyPlayingMusic,
-                musicTrackManager.Singleton.getSong("title"),
-                0.35f,
-                true);
+                musicTrackManager.Singleton.musicCollection.fadeOutSong(0.35f);
                 break;
         }
     }

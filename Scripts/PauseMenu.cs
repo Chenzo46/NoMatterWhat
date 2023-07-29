@@ -68,8 +68,6 @@ public class PauseMenu : MonoBehaviour
             unPause();
 
         }
-
-        
     }
     public void pause()
     {
