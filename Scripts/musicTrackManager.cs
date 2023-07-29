@@ -122,7 +122,7 @@ public class musicTrackManager : MonoBehaviour
                 while (from_volume > 0)
                 {
                     yield return new WaitForEndOfFrame();
-                    from_volume = Mathf.MoveTowards(from_volume, 0f, speed * Time.deltaTime);
+                    from_volume = Mathf.MoveTowards(from_volume, 0f, speed * Time.unscaledDeltaTime);
                     from.changeVolume(from_volume);
                 }
                 to.generateAudioSources(musicParent);
@@ -130,7 +130,7 @@ public class musicTrackManager : MonoBehaviour
                 while (to_volume < savedVolume)
                 {
                     yield return new WaitForEndOfFrame();
-                    to_volume = Mathf.MoveTowards(to_volume, savedVolume, speed * Time.deltaTime);
+                    to_volume = Mathf.MoveTowards(to_volume, savedVolume, speed * Time.unscaledDeltaTime);
                     to.changeVolume(to_volume);
                 }
             }
@@ -147,7 +147,7 @@ public class musicTrackManager : MonoBehaviour
             while (from_volume > to_volume)
             {
                 yield return new WaitForEndOfFrame();
-                from_volume = Mathf.MoveTowards(from_volume, to_volume, speed * Time.deltaTime);
+                from_volume = Mathf.MoveTowards(from_volume, to_volume, speed * Time.unscaledDeltaTime);
                 currentlyPlayingMusic.changeVolume(from_volume);
             }
             
@@ -163,7 +163,8 @@ public class musicTrackManager : MonoBehaviour
             {
                 yield return new WaitForEndOfFrame();
                 currentlyPlayingMusic = newMusic;
-                from_volume = Mathf.MoveTowards(from_volume, to_volume, speed * Time.deltaTime);
+                from_volume = Mathf.MoveTowards(from_volume, to_volume, speed * Time.unscaledDeltaTime);
+                
                 newMusic.changeVolume(from_volume);
             }
         }
@@ -184,7 +185,7 @@ public class musicTrackManager : MonoBehaviour
                 while (to_volume < savedVolume)
                 {
                     yield return new WaitForEndOfFrame();
-                    to_volume = Mathf.MoveTowards(to_volume, savedVolume, speed * Time.deltaTime);
+                    to_volume = Mathf.MoveTowards(to_volume, savedVolume, speed * Time.unscaledDeltaTime);
                     from_volume = savedVolume - to_volume;
 
                     current.changeVolume(from_volume);
@@ -196,13 +197,13 @@ public class musicTrackManager : MonoBehaviour
                 while (from_volume > 0)
                 {
                     yield return new WaitForEndOfFrame();
-                    from_volume = Mathf.MoveTowards(from_volume, 0, speed * Time.deltaTime);
+                    from_volume = Mathf.MoveTowards(from_volume, 0, speed * Time.unscaledDeltaTime);
                     current.changeVolume(from_volume);
                 }
                 while (to_volume < savedVolume)
                 {
                     yield return new WaitForEndOfFrame();
-                    to_volume = Mathf.MoveTowards(to_volume, savedVolume, speed * Time.deltaTime);
+                    to_volume = Mathf.MoveTowards(to_volume, savedVolume, speed * Time.unscaledDeltaTime);
                     nextType.changeVolume(to_volume);
                 }
             }

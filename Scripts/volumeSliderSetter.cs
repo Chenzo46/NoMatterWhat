@@ -10,7 +10,11 @@ public class volumeSliderSetter : MonoBehaviour
 
     private void Start()
     {
-        volumeSlider.value = SaveDataManager.Singleton.gameStateVariables.getFloat(saveKey);
-        volumeSlider.onValueChanged.AddListener((v) => GameStateManager.Singleton.updateVolumeSetting(v,saveKey));
+        try
+        {
+            volumeSlider.value = SaveDataManager.Singleton.gameStateVariables.getFloat(saveKey);
+            volumeSlider.onValueChanged.AddListener((v) => GameStateManager.Singleton.updateVolumeSetting(v, saveKey));
+        }
+        catch { }
     }
 }

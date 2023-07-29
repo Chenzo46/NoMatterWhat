@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -11,12 +12,19 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private CanvasGroup levelName;
     [SerializeField] private CanvasGroup meterFrame;
     [SerializeField] private GameObject firstSelected;
+    [SerializeField] private Animator optionsMenuAnim;
+    [SerializeField] private Sprite FishPause;
+    [SerializeField] private Sprite BirdPause;
+    [SerializeField] private Sprite PlayerPause;
+    [SerializeField] private Image pauseBack;
 
     private MatterSwitcher mt;
 
     private PlayerInputs input;
 
     public static PauseMenu Singleton;
+
+    private bool inOptions = false;
 
     private void Awake()
     {
@@ -40,6 +48,14 @@ public class PauseMenu : MonoBehaviour
         input.Player.Pause.performed -= pausePerformed;
     }
 
+    private void Update()
+    {
+        if (isPaused)
+        {
+            meterFrame.alpha = Mathf.MoveTowards(meterFrame.alpha, 1f, 2f * Time.unscaledDeltaTime);
+        }
+    }
+
     private void pausePerformed(InputAction.CallbackContext value)
     {
         if (!isPaused && anim.GetCurrentAnimatorStateInfo(0).normalizedTime! > 1 && !mt.isDying)
@@ -55,28 +71,37 @@ public class PauseMenu : MonoBehaviour
     }
     public void pause()
     {
-        Debug.Log("paused");
         Time.timeScale = 0f;
         EventSystem.current.SetSelectedGameObject(firstSelected);
         anim.SetTrigger("pause");
         isPaused = true;
-        levelName.alpha = 1f;
-        meterFrame.alpha = 1f;
+        
+        if(mt.getCurrentState() == MatterSwitcher.PlayerState.Normal)
+        {
+            pauseBack.sprite = PlayerPause;
+        }
+        else if (mt.getCurrentState() == MatterSwitcher.PlayerState.Fish)
+        {
+            pauseBack.sprite = FishPause;
+        }
     }
 
     public void unPause()
     {
-        if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime! > 1)
+        if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime! > 1 && !inOptions)
         {
-            Debug.Log("unpaused");
             Time.timeScale = 1f;
             anim.SetTrigger("pause");
             isPaused = false;
-            levelName.alpha = 0f;
-            meterFrame.alpha = 0f;
             EventSystem.current.SetSelectedGameObject(null);
         }
         
+    }
+
+    public void toggleOptionsOpen()
+    {
+        optionsMenuAnim.SetTrigger("open");
+        inOptions = !inOptions;
     }
 
     public void toMainMenu()
