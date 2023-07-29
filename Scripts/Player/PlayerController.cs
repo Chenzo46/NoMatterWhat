@@ -81,6 +81,15 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
+        subscribeInputs();
+    }
+    private void OnDisable()
+    {
+        unsubscribeInput();
+    }
+
+    private void subscribeInputs()
+    {
         moveInput = 0f;
         rb.velocity = Vector2.zero;
         //Walk
@@ -94,7 +103,8 @@ public class PlayerController : MonoBehaviour
         //Box Pickup
         input.Player.Interact.performed += interactPerformed;
     }
-    private void OnDisable()
+
+    private void unsubscribeInput()
     {
         //Walk
         input.Player.walk.performed -= updateMovement;
@@ -116,8 +126,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        
         setAnimations();
+        subscribeInputs();
     }
     void Update()
     {
@@ -151,8 +161,6 @@ public class PlayerController : MonoBehaviour
 
     private void collectDashInput()
     {
-        
-
         if (!isDashing && !grounded() && dashCount > 0 && !dashQueued)
         {
             isDashing = true;
@@ -169,7 +177,6 @@ public class PlayerController : MonoBehaviour
         {
             speed = refSpeed * dashMultiplier;
             rb.velocity = new Vector2(direction * speed * Time.fixedDeltaTime, 0f);
-            Debug.Log("dashing");
         }
         else
         {

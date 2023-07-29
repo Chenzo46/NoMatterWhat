@@ -50,6 +50,16 @@ public class MatterSwitcher : MonoBehaviour
         groundData = GameObject.FindGameObjectWithTag("ground_data").GetComponent<areaData>();
         waterData = GameObject.FindGameObjectWithTag("water_data").GetComponent<areaData>();
         orgSize = bxc.size;
+
+        breathMeter = GameObject.FindGameObjectWithTag("breath").GetComponent<Image>();
+        meterGroup = breathMeter.transform.parent.GetComponent<CanvasGroup>();
+        meterGroup.alpha = 0f;
+
+        input = new PlayerInputs();
+
+        PC.setPlayerInputs(input);
+        FC.setPlayerInputs(input);
+
         try
         {
             if (SaveDataManager.Singleton.getCurrentLevelData().getReachedCheckpoint())
@@ -62,15 +72,6 @@ public class MatterSwitcher : MonoBehaviour
         {
             Debug.Log("Save Data manager singleton is null, no variables will be saved in scene.");
         }
-
-        breathMeter = GameObject.FindGameObjectWithTag("breath").GetComponent<Image>();
-        meterGroup = breathMeter.transform.parent.GetComponent<CanvasGroup>();
-        meterGroup.alpha = 0f;
-
-        input = new PlayerInputs();
-
-        PC.setPlayerInputs(input);
-        FC.setPlayerInputs(input);
     }
     private void OnEnable()
     {
