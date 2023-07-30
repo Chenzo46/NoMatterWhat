@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class boxBehavior : MonoBehaviour
 {
+    //Start of box branch
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private LayerMask liquid;
     [SerializeField] private float maxVelocity;
