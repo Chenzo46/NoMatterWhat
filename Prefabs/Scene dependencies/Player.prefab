@@ -5252,7 +5252,9 @@ MonoBehaviour:
   endLayer:
     serializedVersion: 2
     m_Bits: 512
-  tooltip: {fileID: 0}
+  interact:
+    serializedVersion: 2
+    m_Bits: 16384
   bxc: {fileID: 7036976156532814475}
   rippleSound: {fileID: 8300000, guid: 256e6ae871e566b4ea9177a9b9c3ae96, type: 3}
   deathSound: {fileID: 8300000, guid: 5072790100f357f45a28b2a5eb01931b, type: 3}

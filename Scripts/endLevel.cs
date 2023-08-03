@@ -47,6 +47,7 @@ public class endLevel : MonoBehaviour
 
     public void finishLevel() 
     {
+        MatterSwitcher.Singleton.disableMovement();
         try
         {
             songFadeHandler();

@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
         unsubscribeInput();
     }
 
-    private void subscribeInputs()
+    public void subscribeInputs()
     {
         moveInput = 0f;
         rb.velocity = Vector2.zero;
@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
         input.Player.Interact.performed += interactPerformed;
     }
 
-    private void unsubscribeInput()
+    public void unsubscribeInput()
     {
         //Walk
         input.Player.walk.performed -= updateMovement;
@@ -131,23 +131,22 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        //Movement code
+        setAnimations();
+        var ps = sweatOnGround.emission;
+        ps.enabled = false;
+        if (!canMove) { return; }
         jumpQueuerTimer();
         cyoteTimer();
         dashTimer();
         dashQueuer();
-        if (!canMove) return;
-        var ps = sweatOnGround.emission;
-        ps.enabled = false;
+        
     }
 
     private void FixedUpdate()
     {
-        //Movement code
-        if (!canMove) return;
+        if (!canMove) { return; }
         dash();
         movement();
-        //applyExtraGravityAfterJump();
     }
     #endregion
 
@@ -240,7 +239,11 @@ public class PlayerController : MonoBehaviour
 
     private void updateMovement(InputAction.CallbackContext value)
     {
-        moveInput = value.ReadValue<float>();
+        if (canMove)
+        {
+            moveInput = value.ReadValue<float>();
+        }
+       
     }
     private void updateMovementCanceled(InputAction.CallbackContext value)
     {
@@ -250,7 +253,6 @@ public class PlayerController : MonoBehaviour
     private void movement()
     {
         flipCharacter();
-        setAnimations();
         if (!isDashing)
         {
             float xSpeed = moveInput * speed * Time.fixedDeltaTime;
@@ -277,8 +279,12 @@ public class PlayerController : MonoBehaviour
 
     private void collectJumpInput(InputAction.CallbackContext value)
     {
-        baseJump();
-        jumpQueuerAction();
+        if (canMove)
+        {
+            baseJump();
+            jumpQueuerAction();
+        }
+       
     }
     private void jumpCanceled(InputAction.CallbackContext value)
     {
@@ -375,7 +381,7 @@ public class PlayerController : MonoBehaviour
 
     public void restricMovement()
     {
-        canMove = !canMove;
+        canMove = false;
         rb.velocity = Vector2.zero;
         moveInput = 0;
         setAnimations();
@@ -412,10 +418,12 @@ public class PlayerController : MonoBehaviour
         if(holdingBox)
         {
             dropBox();
+           
         }
         else
         {
             pickUpBox();
+            
         }
         
     }
@@ -425,7 +433,7 @@ public class PlayerController : MonoBehaviour
         Collider2D boxInRange = Physics2D.OverlapCircle(pickupArea.position, pickupRange, boxMask);
 
         
-        if (boxInRange != null && !holdingBox)
+        if (boxInRange != null && !holdingBox && grounded())
         {
             Debug.Log("Box Picked up");
 
@@ -435,8 +443,17 @@ public class PlayerController : MonoBehaviour
 
             box.setPickupLocation(pickupPos);
 
+            box.OnBoxAbsorbed += handleBoxAbsorbed;
+
             holdingBox = true;
         }
+    }
+
+    public bool isBoxInRange()
+    {
+        Collider2D boxInRange = Physics2D.OverlapCircle(pickupArea.position, pickupRange, boxMask);
+
+        return boxInRange != null || holdingBox;
     }
 
     private void dropBox()
@@ -445,15 +462,20 @@ public class PlayerController : MonoBehaviour
         {
             tryPlayAudio(throwSound);
             box.applyForce(new Vector2(1 * lookDir, 1) * throwStrength );
-            Debug.Log("Box dropped");
             box = null;
             holdingBox = false;
         }
     }
 
+    private void handleBoxAbsorbed()
+    {
+        box = null;
+        holdingBox = false;
+    }
+
     public void softDropBox()
     {
-        if (box != null) { box.dropBox();}
+        if (box != null) { box.dropBox(); }
     }
     #endregion
 

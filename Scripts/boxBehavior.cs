@@ -13,6 +13,9 @@ public class boxBehavior : MonoBehaviour
     [SerializeField] private BoxCollider2D bx;
     private Animator anim;
 
+    public delegate void BoxActions();
+    public event BoxActions OnBoxAbsorbed;
+
     private bool pickedUp = false;
     private Transform pickupLocation;
 
@@ -22,8 +25,6 @@ public class boxBehavior : MonoBehaviour
     {
         anim = GetComponent<Animator>();
     }
-
-    
 
     private bool isInLiquid()
     {
@@ -40,9 +41,6 @@ public class boxBehavior : MonoBehaviour
         {
             rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxVelocity);
         }
-
-
-
     }
 
     private void Update()
@@ -61,6 +59,7 @@ public class boxBehavior : MonoBehaviour
         pickedUp = false;
         rb.gravityScale = 3f;
         rb.AddForce(dir, ForceMode2D.Impulse);
+        bx.enabled = true;
     }
 
     public void setPickupLocation(Transform loc)
@@ -68,17 +67,20 @@ public class boxBehavior : MonoBehaviour
         pickupLocation = loc;
         pickedUp = true;
         rb.gravityScale = 0f;
+        bx.enabled = false;
     }
 
     public void dropBox()
     {
         pickedUp = false;
+        bx.enabled = true;
         rb.gravityScale = 3f;
     }
 
     public void consumeBox()
     {
         anim.SetTrigger("consume");
+        OnBoxAbsorbed();
     }
 
 }

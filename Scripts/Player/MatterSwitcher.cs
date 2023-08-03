@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -10,6 +11,7 @@ public class MatterSwitcher : MonoBehaviour
     [SerializeField] private areaData waterData;
     [SerializeField] private LayerMask switchLayer;
     [SerializeField] private LayerMask endLayer;
+    [SerializeField] private LayerMask interact;
     [SerializeField] private BoxCollider2D bxc;
     [SerializeField] private AudioClip rippleSound;
     [SerializeField] private AudioClip deathSound;
@@ -20,9 +22,11 @@ public class MatterSwitcher : MonoBehaviour
     private Vector2 orgSize;
     private Vector2 fish_size = new Vector2(0.7192169f, 0.7138041f);
 
-    public enum PlayerState { Normal, Fish, Bird }
+    [System.Serializable] public enum PlayerState { Normal, Fish, Bird }
 
     private PlayerState currentPlayerState = PlayerState.Normal;
+
+    public static MatterSwitcher Singleton;
 
     private FishController FC;
     private PlayerController PC;
@@ -42,9 +46,11 @@ public class MatterSwitcher : MonoBehaviour
     private Vector2 orgBoxPos;
     private SpriteRenderer spr;
 
+
     // Start is called before the first frame update
     void Awake()
     {
+        Singleton = this;
         FC = GetComponent<FishController>();
         PC = GetComponent<PlayerController>();
         groundData = GameObject.FindGameObjectWithTag("ground_data").GetComponent<areaData>();
@@ -75,13 +81,21 @@ public class MatterSwitcher : MonoBehaviour
     }
     private void OnEnable()
     {
+        subscribe();
+    }
+
+    private void OnDisable()
+    {
+        unsubscribe();
+    }
+    private void subscribe()
+    {
         input.Enable();
 
         input.Player.Interact.performed += interactPerformed;
         input.Player.Reset.performed += resetPlayer;
     }
-
-    private void OnDisable()
+    private void unsubscribe()
     {
         input.Disable();
 
@@ -97,6 +111,11 @@ public class MatterSwitcher : MonoBehaviour
         spr = GetComponent<SpriteRenderer>();
     }
 
+    public void disableMovement()
+    {
+        PC.restricMovement();
+        
+    }
     private void changeBreathMeter()
     {
         breathMeter.transform.localScale = new Vector3(FC.getMeterValue(), 1f, 1f);
@@ -170,8 +189,50 @@ public class MatterSwitcher : MonoBehaviour
 
     private void interactPerformed(InputAction.CallbackContext val)
     {
-        matterToggler();
-        isnextToEnd();
+        if (!PC.isBoxInRange())
+        {
+            matterToggler();
+            callInteractable();
+        }
+        
+    }
+    private void callInteractable()
+    {
+        RaycastHit2D[] interacts = Physics2D.CircleCastAll(transform.position, 1.3f, Vector2.zero, 2.6f, interact);
+
+        if (interacts.Length < 1) { return; }
+
+        Interactable highestPriority = null;
+        int hp = -1;
+
+        foreach(RaycastHit2D hit in interacts)
+        {
+            Interactable inter = hit.collider.gameObject.GetComponent<Interactable>();
+            if(inter.getPriority() > hp)
+            {
+                highestPriority = inter;
+            }
+        }
+
+        highestPriority.invokeInteracted(currentPlayerState);
+    }
+
+    private bool nextToInteractable()
+    {
+        RaycastHit2D[] interacts = Physics2D.CircleCastAll(transform.position, 1.3f, Vector2.zero, 2.6f, interact);
+
+        if (interacts.Length < 1) { return false; }
+
+        foreach(RaycastHit2D hit in interacts)
+        {
+            Interactable inter = hit.collider.gameObject.GetComponent<Interactable>();
+
+            if (inter.getAllowedSates().Contains(currentPlayerState))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void matterToggler()
@@ -203,7 +264,7 @@ public class MatterSwitcher : MonoBehaviour
 
     private void applyCurrentState()
     {
-        interactGraphic.SetActive((nextToEndBool() && currentPlayerState == PlayerState.Normal) || (inSwitchArea() && mp != null && mp.getActiveState()));
+        interactGraphic.SetActive(nextToInteractable() || (inSwitchArea() && mp != null && mp.getActiveState()));
 
         if (currentPlayerState == PlayerState.Normal)
         {
@@ -216,33 +277,6 @@ public class MatterSwitcher : MonoBehaviour
             PC.enabled = false;
             FC.enabled = true;
 
-        }
-        
-    }
-
-    private bool nextToEndBool()
-    {
-        Collider2D cl = Physics2D.OverlapCircle(transform.position, 1f, endLayer);
-
-        if (cl != null && cl.GetComponent<endLevel>().getActiveState())
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-
-    private void isnextToEnd()
-    {
-        Collider2D  cl = Physics2D.OverlapCircle(transform.position, 1f, endLayer);
-
-        if (currentPlayerState == PlayerState.Normal && cl != null && cl.GetComponent<endLevel>().getActiveState())
-        {
-            cl.gameObject.GetComponent<endLevel>().finishLevel();
-            PC.restricMovement();
         }
         
     }
