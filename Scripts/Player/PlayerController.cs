@@ -240,6 +240,10 @@ public class PlayerController : MonoBehaviour
         {
             moveInput = value.ReadValue<float>();
         }
+        else
+        {
+            moveInput = 0;
+        }
        
     }
     private void updateMovementCanceled(InputAction.CallbackContext value)
@@ -373,8 +377,9 @@ public class PlayerController : MonoBehaviour
     public void restricMovement()
     {
         canMove = false;
-        rb.velocity = Vector2.zero;
+        rb.velocity = new Vector2(0,rb.velocity.y);
         setAnimations();
+        anim.SetBool("walking", false);
     }
 
     public void die()
@@ -498,7 +503,8 @@ public class PlayerController : MonoBehaviour
 
     private void setAnimations()
     {
-        anim.SetBool("walking", rb.velocity.x != 0 && (rb.velocity.x > 0.0001 || rb.velocity.x < -0.0001));
+        anim.SetBool("walking", moveInput != 0);
+        
         anim.SetBool("falling", rb.velocity.y < 0);
         anim.SetBool("grounded", grounded());
     }

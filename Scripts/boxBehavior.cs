@@ -19,11 +19,12 @@ public class boxBehavior : MonoBehaviour
     private bool pickedUp = false;
     private Transform pickupLocation;
 
-    private Vector2 smoothRef;
+    private Vector2 bxSize;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        bxSize = bx.size;
     }
 
     private bool isInLiquid()
@@ -50,6 +51,7 @@ public class boxBehavior : MonoBehaviour
             //rb.MovePosition(pickupLocation.position);
             transform.position = pickupLocation.position;
             rb.angularVelocity = 0f;
+            rb.velocity = Vector2.zero;
             rb.MoveRotation(Quaternion.Euler(0f,0f,0f));
         }
     }
@@ -60,6 +62,7 @@ public class boxBehavior : MonoBehaviour
         rb.gravityScale = 3f;
         rb.AddForce(dir, ForceMode2D.Impulse);
         bx.enabled = true;
+        bx.size = bxSize;
     }
 
     public void setPickupLocation(Transform loc)
@@ -67,6 +70,7 @@ public class boxBehavior : MonoBehaviour
         pickupLocation = loc;
         pickedUp = true;
         rb.gravityScale = 0f;
+        bx.size = bxSize/2;
         bx.enabled = false;
     }
 
@@ -75,6 +79,7 @@ public class boxBehavior : MonoBehaviour
         pickedUp = false;
         bx.enabled = true;
         rb.gravityScale = 3f;
+        bx.size = bxSize;
     }
 
     public void consumeBox()

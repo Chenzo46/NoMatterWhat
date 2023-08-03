@@ -197,7 +197,7 @@ public class MatterSwitcher : MonoBehaviour
 
     private void interactPerformed(InputAction.CallbackContext val)
     {
-        if (!PC.isBoxInRange())
+        if (!PC.isBoxInRange() && !isDying)
         {
             matterToggler();
             callInteractable();
