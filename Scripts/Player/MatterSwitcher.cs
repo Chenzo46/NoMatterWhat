@@ -66,6 +66,10 @@ public class MatterSwitcher : MonoBehaviour
         PC.setPlayerInputs(input);
         FC.setPlayerInputs(input);
 
+        input.Fish.Disable();
+        input.Player.Enable();
+        input.Switcher.Enable();
+
         try
         {
             if (SaveDataManager.Singleton.getCurrentLevelData().getReachedCheckpoint())
@@ -92,15 +96,15 @@ public class MatterSwitcher : MonoBehaviour
     {
         input.Enable();
 
-        input.Player.Interact.performed += interactPerformed;
-        input.Player.Reset.performed += resetPlayer;
+        input.Switcher.Interact.performed += interactPerformed;
+        input.Switcher.Reset.performed += resetPlayer;
     }
     private void unsubscribe()
     {
         input.Disable();
 
-        input.Player.Interact.performed -= interactPerformed;
-        input.Player.Reset.performed -= resetPlayer;
+        input.Switcher.Interact.performed -= interactPerformed;
+        input.Switcher.Reset.performed -= resetPlayer;
     }
 
     private void Start()
@@ -184,7 +188,11 @@ public class MatterSwitcher : MonoBehaviour
 
     private void resetPlayer(InputAction.CallbackContext value)
     {
-        killPlayer();
+        if (!isDying)
+        {
+            killPlayer();
+        }
+        
     }
 
     private void interactPerformed(InputAction.CallbackContext val)
@@ -227,7 +235,7 @@ public class MatterSwitcher : MonoBehaviour
         {
             Interactable inter = hit.collider.gameObject.GetComponent<Interactable>();
 
-            if (inter.getAllowedSates().Contains(currentPlayerState))
+            if (inter.getAllowedSates().Contains(currentPlayerState) && inter.showIndicator)
             {
                 return true;
             }
@@ -239,6 +247,8 @@ public class MatterSwitcher : MonoBehaviour
     {
         if (currentPlayerState == PlayerState.Normal && inSwitchArea() && mp.getActiveState())
         {
+            input.Player.Disable();
+            input.Fish.Enable();
             currentPlayerState = PlayerState.Fish;
             transform.position = mp.getFishPos();
             PC.softDropBox();
@@ -251,6 +261,8 @@ public class MatterSwitcher : MonoBehaviour
         }
         else if (currentPlayerState == PlayerState.Fish && inSwitchArea() && mp.getActiveState())
         {
+            input.Player.Enable();
+            input.Fish.Disable();
             currentPlayerState = PlayerState.Normal;
             transform.position = mp.transform.position;
             PC.switchToPlayerMode();

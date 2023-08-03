@@ -55,36 +55,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Swim"",
-                    ""type"": ""Value"",
-                    ""id"": ""a75eaf7f-abd1-4f75-a32c-f5cbd2967c75"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""36019525-31d7-452f-b3cd-9aaa7c169428"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Reset"",
-                    ""type"": ""Button"",
-                    ""id"": ""11125c75-684d-42f2-8578-f9f52e9d133b"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Pause"",
-                    ""type"": ""Button"",
-                    ""id"": ""62ecea26-fc26-42b4-b6ef-8060b99c80b8"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -256,10 +229,58 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Fish"",
+            ""id"": ""98b73fd8-a42e-4889-8ed6-bb88645d7149"",
+            ""actions"": [
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""017e30ac-051c-4e20-a3b2-4d0bae5345fa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Swim"",
+                    ""type"": ""Value"",
+                    ""id"": ""dd7a1843-f7b1-4cb8-b3ea-26cb24897a24"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""3386e3d3-f30b-45cc-b385-8c97b1491bc0"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": ""AxisDeadzone(min=0.35,max=1)"",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2352ca22-51de-47bf-80ef-dec38ee43b21"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": ""arrow keys"",
-                    ""id"": ""49d34820-064c-4802-acd3-4a3a44f162de"",
+                    ""id"": ""0351894d-af97-42e9-ada4-dfdb33f6f98e"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -270,7 +291,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""77d0fd1f-7f0e-46fd-b911-45fe412c1529"",
+                    ""id"": ""be6429e0-f096-4960-ab86-1f178646344e"",
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -281,7 +302,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""0706a132-0b93-44f0-b61b-a86efc85ec0f"",
+                    ""id"": ""c26e028f-487a-444c-87e6-63f151687c61"",
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -292,7 +313,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""b37ab5e3-8a7f-4ccf-821d-60b06a486611"",
+                    ""id"": ""8e38cfd6-051c-4814-b373-7f6c8be7ee04"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -303,7 +324,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""ff1dfc02-ddc7-4f15-9876-f73c1be74317"",
+                    ""id"": ""a298e73f-b360-49d4-8745-96a59987e166"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -314,7 +335,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""left stick"",
-                    ""id"": ""c473430a-82f0-4926-9df6-c68840f3203a"",
+                    ""id"": ""7bdb11a3-eaa9-49bb-bfdd-9a6495d369b4"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -325,7 +346,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""7ae628fb-36bb-436a-ab10-082305fea36d"",
+                    ""id"": ""0d4fbde4-6434-4ca0-b4d7-d291bb481d26"",
                     ""path"": ""<Gamepad>/leftStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -336,7 +357,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""98479e9f-4811-4b71-a45b-972528c00b80"",
+                    ""id"": ""921fe803-6f1f-4496-be39-27ea2bbc5bce"",
                     ""path"": ""<Gamepad>/leftStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -347,7 +368,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""03855839-30e6-4f39-b6dd-e6a2a6b090e7"",
+                    ""id"": ""01f780cc-a576-4d28-852c-e7f40bdfa381"",
                     ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -358,7 +379,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""73b975d6-1f8b-468d-8636-c9086b1fc61d"",
+                    ""id"": ""fb8410be-a98a-4f94-b550-f9558d750b66"",
                     ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -366,10 +387,67 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""action"": ""Swim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                }
+            ]
+        },
+        {
+            ""name"": ""Switcher"",
+            ""id"": ""744b78ff-5503-4812-be3e-05822089dc42"",
+            ""actions"": [
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""55038811-5682-4e50-a07d-4c0ba18be4ab"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reset"",
+                    ""type"": ""Button"",
+                    ""id"": ""b128be59-7761-469a-83bb-1f56cd63b7ce"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""7e7c0bf1-5150-42bf-bd6b-06a8fe2bb17a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""ee040bcf-2a54-4d7e-a883-2cfad40b78eb"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c058775f-0911-4570-ba3e-aaf21f3226a4"",
+                    ""id"": ""baba7008-3a73-433c-b805-5a7ffaa9bab3"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c7ad10ae-0a94-4f5a-8293-7d4db212a20e"",
                     ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -380,7 +458,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""20808d9f-186a-4df6-bb97-ab0ccc2ffd2d"",
+                    ""id"": ""0225b674-f300-4a01-ab17-c5108cccf2d7"",
                     ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -391,7 +469,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ecd60e25-600f-4043-980b-ce20df8f418e"",
+                    ""id"": ""52bf91ce-ac25-48cb-be9c-4e0e5f909d5b"",
                     ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -402,7 +480,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e10627bb-c73d-4b87-bd20-27729c72ee5a"",
+                    ""id"": ""5aa16e24-2f0d-4563-836b-1346ae03251c"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -421,10 +499,16 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_Player_walk = m_Player.FindAction("walk", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_Swim = m_Player.FindAction("Swim", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
-        m_Player_Reset = m_Player.FindAction("Reset", throwIfNotFound: true);
-        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        // Fish
+        m_Fish = asset.FindActionMap("Fish", throwIfNotFound: true);
+        m_Fish_Dash = m_Fish.FindAction("Dash", throwIfNotFound: true);
+        m_Fish_Swim = m_Fish.FindAction("Swim", throwIfNotFound: true);
+        // Switcher
+        m_Switcher = asset.FindActionMap("Switcher", throwIfNotFound: true);
+        m_Switcher_Pause = m_Switcher.FindAction("Pause", throwIfNotFound: true);
+        m_Switcher_Reset = m_Switcher.FindAction("Reset", throwIfNotFound: true);
+        m_Switcher_Interact = m_Switcher.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -489,10 +573,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_walk;
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_Swim;
     private readonly InputAction m_Player_Interact;
-    private readonly InputAction m_Player_Reset;
-    private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
         private @PlayerInputs m_Wrapper;
@@ -500,10 +581,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         public InputAction @walk => m_Wrapper.m_Player_walk;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @Swim => m_Wrapper.m_Player_Swim;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
-        public InputAction @Reset => m_Wrapper.m_Player_Reset;
-        public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -522,18 +600,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @Swim.started += instance.OnSwim;
-            @Swim.performed += instance.OnSwim;
-            @Swim.canceled += instance.OnSwim;
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
-            @Reset.started += instance.OnReset;
-            @Reset.performed += instance.OnReset;
-            @Reset.canceled += instance.OnReset;
-            @Pause.started += instance.OnPause;
-            @Pause.performed += instance.OnPause;
-            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -547,18 +616,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @Swim.started -= instance.OnSwim;
-            @Swim.performed -= instance.OnSwim;
-            @Swim.canceled -= instance.OnSwim;
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
-            @Reset.started -= instance.OnReset;
-            @Reset.performed -= instance.OnReset;
-            @Reset.canceled -= instance.OnReset;
-            @Pause.started -= instance.OnPause;
-            @Pause.performed -= instance.OnPause;
-            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -576,14 +636,138 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Fish
+    private readonly InputActionMap m_Fish;
+    private List<IFishActions> m_FishActionsCallbackInterfaces = new List<IFishActions>();
+    private readonly InputAction m_Fish_Dash;
+    private readonly InputAction m_Fish_Swim;
+    public struct FishActions
+    {
+        private @PlayerInputs m_Wrapper;
+        public FishActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Dash => m_Wrapper.m_Fish_Dash;
+        public InputAction @Swim => m_Wrapper.m_Fish_Swim;
+        public InputActionMap Get() { return m_Wrapper.m_Fish; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(FishActions set) { return set.Get(); }
+        public void AddCallbacks(IFishActions instance)
+        {
+            if (instance == null || m_Wrapper.m_FishActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_FishActionsCallbackInterfaces.Add(instance);
+            @Dash.started += instance.OnDash;
+            @Dash.performed += instance.OnDash;
+            @Dash.canceled += instance.OnDash;
+            @Swim.started += instance.OnSwim;
+            @Swim.performed += instance.OnSwim;
+            @Swim.canceled += instance.OnSwim;
+        }
+
+        private void UnregisterCallbacks(IFishActions instance)
+        {
+            @Dash.started -= instance.OnDash;
+            @Dash.performed -= instance.OnDash;
+            @Dash.canceled -= instance.OnDash;
+            @Swim.started -= instance.OnSwim;
+            @Swim.performed -= instance.OnSwim;
+            @Swim.canceled -= instance.OnSwim;
+        }
+
+        public void RemoveCallbacks(IFishActions instance)
+        {
+            if (m_Wrapper.m_FishActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IFishActions instance)
+        {
+            foreach (var item in m_Wrapper.m_FishActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_FishActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public FishActions @Fish => new FishActions(this);
+
+    // Switcher
+    private readonly InputActionMap m_Switcher;
+    private List<ISwitcherActions> m_SwitcherActionsCallbackInterfaces = new List<ISwitcherActions>();
+    private readonly InputAction m_Switcher_Pause;
+    private readonly InputAction m_Switcher_Reset;
+    private readonly InputAction m_Switcher_Interact;
+    public struct SwitcherActions
+    {
+        private @PlayerInputs m_Wrapper;
+        public SwitcherActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Pause => m_Wrapper.m_Switcher_Pause;
+        public InputAction @Reset => m_Wrapper.m_Switcher_Reset;
+        public InputAction @Interact => m_Wrapper.m_Switcher_Interact;
+        public InputActionMap Get() { return m_Wrapper.m_Switcher; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(SwitcherActions set) { return set.Get(); }
+        public void AddCallbacks(ISwitcherActions instance)
+        {
+            if (instance == null || m_Wrapper.m_SwitcherActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_SwitcherActionsCallbackInterfaces.Add(instance);
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
+            @Reset.started += instance.OnReset;
+            @Reset.performed += instance.OnReset;
+            @Reset.canceled += instance.OnReset;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
+        }
+
+        private void UnregisterCallbacks(ISwitcherActions instance)
+        {
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
+            @Reset.started -= instance.OnReset;
+            @Reset.performed -= instance.OnReset;
+            @Reset.canceled -= instance.OnReset;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
+        }
+
+        public void RemoveCallbacks(ISwitcherActions instance)
+        {
+            if (m_Wrapper.m_SwitcherActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ISwitcherActions instance)
+        {
+            foreach (var item in m_Wrapper.m_SwitcherActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_SwitcherActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public SwitcherActions @Switcher => new SwitcherActions(this);
     public interface IPlayerActions
     {
         void OnWalk(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnSwim(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
-        void OnReset(InputAction.CallbackContext context);
+    }
+    public interface IFishActions
+    {
+        void OnDash(InputAction.CallbackContext context);
+        void OnSwim(InputAction.CallbackContext context);
+    }
+    public interface ISwitcherActions
+    {
         void OnPause(InputAction.CallbackContext context);
+        void OnReset(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }

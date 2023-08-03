@@ -58,22 +58,22 @@ public class FishController : MonoBehaviour
         rb.velocity = Vector2.zero;
         isPressingSprint = false;
         //Swim
-        input.Player.Swim.performed += swimPerformed;
-        input.Player.Swim.canceled += swimCanceled;
+        input.Fish.Swim.performed += swimPerformed;
+        input.Fish.Swim.canceled += swimCanceled;
         //Sprint
-        input.Player.Dash.performed += sprintStarted;
-        input.Player.Dash.canceled += sprintCanceled;
+        input.Fish.Dash.performed += sprintStarted;
+        input.Fish.Dash.canceled += sprintCanceled;
     }
 
     private void OnDisable()
     {
         
         //Swim
-        input.Player.Swim.performed -= swimPerformed;
-        input.Player.Swim.canceled -= swimCanceled;
+        input.Fish.Swim.performed -= swimPerformed;
+        input.Fish.Swim.canceled -= swimCanceled;
         //Sprint
-        input.Player.Dash.performed -= sprintStarted;
-        input.Player.Dash.canceled -= sprintCanceled;
+        input.Fish.Dash.performed -= sprintStarted;
+        input.Fish.Dash.canceled -= sprintCanceled;
     }
     public void setPlayerInputs(PlayerInputs pl)
     {
@@ -107,8 +107,6 @@ public class FishController : MonoBehaviour
         anim.SetLayerWeight(1, 1);
         af.setAfterImage(afterImageAsset);
     }
-
-    
 
     public float getMeterValue()
     {
@@ -252,6 +250,7 @@ public class FishController : MonoBehaviour
 
     private void swimSprint()
     {
+        if (dying) { return; }
         isSprinting = isPressingSprint && isInWater();
         if(isSprinting)
         {

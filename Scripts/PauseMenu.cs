@@ -38,14 +38,14 @@ public class PauseMenu : MonoBehaviour
     {
         input.Enable();
 
-        input.Player.Pause.performed += pausePerformed;
+        input.Switcher.Pause.performed += pausePerformed;
     }
 
     private void OnDisable()
     {
         input.Disable();
 
-        input.Player.Pause.performed -= pausePerformed;
+        input.Switcher.Pause.performed -= pausePerformed;
     }
 
     private void Update()

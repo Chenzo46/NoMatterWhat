@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpQueueTime = 0.1f;
     [SerializeField] private float cyoteTime = 0.1f;
     [SerializeField] private float jumpCancelSlowdown = 5f;
-    [SerializeField] private float extraFallGravity = 1.2f;
     [Header("----- Dash -----")]
     [SerializeField] private float dashMultiplier = 10f;
     [SerializeField] private float dashTime = 2f;
@@ -90,8 +89,7 @@ public class PlayerController : MonoBehaviour
 
     public void subscribeInputs()
     {
-        moveInput = 0f;
-        rb.velocity = Vector2.zero;
+        moveInput = input.Player.walk.ReadValue<float>();
         //Walk
         input.Player.walk.performed += updateMovement;
         input.Player.walk.canceled += updateMovementCanceled;
@@ -139,7 +137,6 @@ public class PlayerController : MonoBehaviour
         cyoteTimer();
         dashTimer();
         dashQueuer();
-        
     }
 
     private void FixedUpdate()
@@ -291,6 +288,8 @@ public class PlayerController : MonoBehaviour
         jumpCancel();
     }
 
+
+
     private void baseJump()
     {
         if (cyoteRef > 0f)
@@ -353,14 +352,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void applyExtraGravityAfterJump()
-    {
-        if (rb.velocity.y < 0 &&  !isDashing)
-        {
-            rb.AddForce(Vector2.down * extraFallGravity);
-        }
-    }
-
     private bool grounded()
     {
         return Physics2D.OverlapBox(groundCheckPosition.position, groundCheckBounds, 0f, groundMask);
@@ -383,7 +374,6 @@ public class PlayerController : MonoBehaviour
     {
         canMove = false;
         rb.velocity = Vector2.zero;
-        moveInput = 0;
         setAnimations();
     }
 
@@ -435,7 +425,6 @@ public class PlayerController : MonoBehaviour
         
         if (boxInRange != null && !holdingBox && grounded())
         {
-            Debug.Log("Box Picked up");
 
             tryPlayAudio(pickupSound);
 
@@ -509,7 +498,7 @@ public class PlayerController : MonoBehaviour
 
     private void setAnimations()
     {
-        anim.SetBool("walking", moveInput != 0);
+        anim.SetBool("walking", rb.velocity.x != 0 && (rb.velocity.x > 0.0001 || rb.velocity.x < -0.0001));
         anim.SetBool("falling", rb.velocity.y < 0);
         anim.SetBool("grounded", grounded());
     }

@@ -8,6 +8,7 @@ public class Interactable : MonoBehaviour
     [SerializeField] private UnityEvent OnInteracted;
     [SerializeField] private int priority = 0;
     [SerializeField] private List<MatterSwitcher.PlayerState> allowedStates;
+    public bool showIndicator { get; set; } = true; 
     public void invokeInteracted(MatterSwitcher.PlayerState current)
     {
 

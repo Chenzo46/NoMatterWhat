@@ -31,6 +31,7 @@ public class endLevel : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         bx = GetComponent<BoxCollider2D>();
+        GetComponent<Interactable>().showIndicator = isActive;
     }
 
     // Update is called once per frame
@@ -47,19 +48,22 @@ public class endLevel : MonoBehaviour
 
     public void finishLevel() 
     {
-        MatterSwitcher.Singleton.disableMovement();
-        try
+        if (isActive)
         {
-            songFadeHandler();
-            SaveDataManager.Singleton.getCurrentLevelData().setCheckpoint(false);
-            SaveDataManager.Singleton.saveData();
-            SceneTransitioner.Singleton.leaveScene();
+            MatterSwitcher.Singleton.disableMovement();
+            try
+            {
+                songFadeHandler();
+                SaveDataManager.Singleton.getCurrentLevelData().setCheckpoint(false);
+                SaveDataManager.Singleton.saveData();
+                SceneTransitioner.Singleton.leaveScene();
+            }
+            catch
+            {
+                SceneTransitioner.Singleton.leaveScene();
+            }
         }
-        catch
-        {
-            Debug.Log("No Manager Functions Executed");
-            SceneTransitioner.Singleton.leaveScene();
-        }
+       
     }
 
     private void checkForBox()
@@ -75,6 +79,7 @@ public class endLevel : MonoBehaviour
             temp.setPickupLocation(obsorbCenter);
 
             isActive = true;
+            GetComponent<Interactable>().showIndicator = true;
         }
     }
 
